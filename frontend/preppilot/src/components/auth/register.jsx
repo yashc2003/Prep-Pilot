@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { commonFields, roleSpecificFields } from '../../utils/formConfig';
-import './Auth.css';
+
+import './auth.css';
 
 const Register = ({ onSwitchToLogin }) => {
   const [formData, setFormData] = useState({
@@ -195,7 +196,7 @@ const Register = ({ onSwitchToLogin }) => {
 
         <p className="auth-switch">
           Already have an account?{' '}
-          <span onClick={onSwitchToLogin} className="link">
+          <span onClick={() => window.location.href = '/login'} className="link">
             Login here
           </span>
         </p>
