@@ -1,5 +1,6 @@
+
 import React, { useState } from 'react';
-import './Auth.css';
+import './auth.css';
 
 const Login = ({ onSwitchToRegister, onLoginSuccess }) => {
   const [credentials, setCredentials] = useState({
@@ -7,20 +8,75 @@ const Login = ({ onSwitchToRegister, onLoginSuccess }) => {
     password: '',
     role: ''
   });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+    
+    
+    if (errors[name]) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
+
     setCredentials({
       ...credentials,
-      [e.target.name]: e.target.value
+      [name]: value
     });
   };
 
-  const handleSubmit = (e) => {
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!credentials.role) {
+      newErrors.role = 'Please select a role';
+    }
+
+    if (!credentials.username || credentials.username.trim().length < 3) {
+      newErrors.username = 'Username must be at least 3 characters';
+    }
+
+    if (!credentials.password || credentials.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login Credentials:', credentials);
     
-    // Simulate login success
-    onLoginSuccess(credentials.role || 'candidate');
+    console.log('Login form submitted!'); // Debug log
+    
+    if (!validateForm()) {
+      console.log('Validation failed:', errors);
+      alert('Please fix the errors in the form');
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      console.log('Login Credentials:', credentials);
+      
+    
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      
+      alert('Login successful!');
+      onLoginSuccess(credentials.role);
+      
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('Login failed. Please check your credentials.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -35,7 +91,7 @@ const Login = ({ onSwitchToRegister, onLoginSuccess }) => {
               value={credentials.role}
               onChange={handleChange}
               required
-              className="form-select"
+              className={`form-select ${errors.role ? 'error' : ''}`}
             >
               <option value="">Select Role</option>
               <option value="candidate">Candidate</option>
@@ -44,6 +100,7 @@ const Login = ({ onSwitchToRegister, onLoginSuccess }) => {
               <option value="consultancy">Consultancy</option>
               <option value="admin">Admin</option>
             </select>
+            {errors.role && <span className="error-message">{errors.role}</span>}
           </div>
 
           <div className="form-group">
@@ -54,9 +111,10 @@ const Login = ({ onSwitchToRegister, onLoginSuccess }) => {
               value={credentials.username}
               onChange={handleChange}
               required
-              className="form-input"
+              className={`form-input ${errors.username ? 'error' : ''}`}
               placeholder="Enter your username"
             />
+            {errors.username && <span className="error-message">{errors.username}</span>}
           </div>
 
           <div className="form-group">
@@ -67,13 +125,18 @@ const Login = ({ onSwitchToRegister, onLoginSuccess }) => {
               value={credentials.password}
               onChange={handleChange}
               required
-              className="form-input"
+              className={`form-input ${errors.password ? 'error' : ''}`}
               placeholder="Enter your password"
             />
+            {errors.password && <span className="error-message">{errors.password}</span>}
           </div>
 
-          <button type="submit" className="btn btn-primary">
-            Login
+          <button 
+            type="submit" 
+            className="btn btn-primary"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Logging in...' : 'Login'}
           </button>
         </form>
 

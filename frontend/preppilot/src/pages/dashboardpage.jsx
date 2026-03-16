@@ -1,33 +1,28 @@
 import React from 'react';
-import AdminDashboard from '../components/Dashboard/AdminDashboard';
-import CandidateDashboard from '../components/Dashboard/CandidateDashboard';
-import CollegeDashboard from '../components/Dashboard/CollegeDashboard';
-import CompanyDashboard from '../components/Dashboard/CompanyDashboard';
-import ConsultancyDashboard from '../components/Dashboard/ConsultancyDashboard';
+import AdminDashboard from '../components/dashboard/admin';
+import CandidateDashboard from '../components/dashboard/candidate';
 import './Dashboard.css';
+import logo from '../assets/preppilot-logo.svg';
 
 const DashboardPage = ({ role, onLogout }) => {
   const renderDashboard = () => {
-    switch (role) {
-      case 'admin':
-        return <AdminDashboard />;
-      case 'candidate':
-        return <CandidateDashboard />;
-      case 'college':
-        return <CollegeDashboard />;
-      case 'company':
-        return <CompanyDashboard />;
-      case 'consultancy':
-        return <ConsultancyDashboard />;
-      default:
-        return <CandidateDashboard />;
+    if (role === 'admin') {
+      return <AdminDashboard />;
     }
+
+    return <CandidateDashboard />;
   };
 
   return (
     <div className="dashboard-layout">
       <header className="dashboard-header">
-        <h1>Preppilot Dashboard</h1>
+        <div className="dashboard-brand">
+          <img className="dashboard-logo" src={logo} alt="PrepPilot" />
+          <div className="dashboard-brand-text">
+            <div className="dashboard-brand-name">PrepPilot</div>
+            <div className="dashboard-brand-subtitle">Admin & User Dashboard</div>
+          </div>
+        </div>
         <div className="user-info">
           <span className="role-badge">{role}</span>
           <button onClick={onLogout} className="btn btn-logout">
@@ -39,6 +34,23 @@ const DashboardPage = ({ role, onLogout }) => {
       <div className="dashboard-content">
         {renderDashboard()}
       </div>
+
+      <footer className="dashboard-footer">
+        <div className="dashboard-footer-inner">
+          <span className="dashboard-footer-muted">© {new Date().getFullYear()} PrepPilot</span>
+          <div className="dashboard-footer-links">
+            <button type="button" className="footer-link" onClick={() => alert('Privacy policy page can be added')}>
+              Privacy
+            </button>
+            <button type="button" className="footer-link" onClick={() => alert('Terms page can be added')}>
+              Terms
+            </button>
+            <button type="button" className="footer-link" onClick={() => alert('Support page can be added')}>
+              Support
+            </button>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

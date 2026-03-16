@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import Login from '../components/Auth/Login';
-import Register from '../components/Auth/Register';
-import DashboardPage from './DashboardPage';
+import Login from '../components/auth/login';
+import Register from '../components/auth/register';
+import DashboardPage from './dashboardpage';
+import VisitingPage from './visitingpage';
 
 const ParentPage = () => {
-  const [currentView, setCurrentView] = useState('login'); // 'login', 'register', 'dashboard'
+  const [currentView, setCurrentView] = useState('visiting'); // 'visiting', 'login', 'register', 'dashboard'
   const [userRole, setUserRole] = useState(null);
 
   const handleLoginSuccess = (role) => {
@@ -14,14 +15,21 @@ const ParentPage = () => {
 
   const handleLogout = () => {
     setUserRole(null);
-    setCurrentView('login');
+    setCurrentView('visiting');
   };
 
   return (
     <div className="parent-page">
+      {currentView === 'visiting' && (
+        <VisitingPage
+          onStartRegister={() => setCurrentView('register')}
+          onGoToLogin={() => setCurrentView('login')}
+        />
+      )}
+
       {currentView === 'login' && (
         <Login
-          onSwitchToRegister={() => setCurrentView('register')}
+          onSwitchToRegister={() => setCurrentView('visiting')}
           onLoginSuccess={handleLoginSuccess}
         />
       )}

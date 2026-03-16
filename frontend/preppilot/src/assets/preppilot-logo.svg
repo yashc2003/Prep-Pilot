@@ -1,0 +1,29 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PrepPilot logo">
+  <defs>
+    <linearGradient id="bg" x1="10" y1="6" x2="54" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#EEF2FF"/>
+    </linearGradient>
+    <filter id="s" x="-30" y="-30" width="124" height="124" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#0b2231" flood-opacity="0.20"/>
+    </filter>
+    <linearGradient id="ring" x1="18" y1="18" x2="46" y2="46" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E4D69"/>
+      <stop offset="1" stop-color="#2F7EAF"/>
+    </linearGradient>
+  </defs>
+
+  <g filter="url(#s)">
+    <rect x="6" y="6" width="52" height="52" rx="16" fill="url(#bg)"/>
+    <rect x="6.75" y="6.75" width="50.5" height="50.5" rx="15.25" stroke="rgba(30,77,105,0.12)" stroke-width="1.5"/>
+  </g>
+
+  <!-- four ribbon arcs (original mark, inspired by motion but not a copy) -->
+  <path d="M32 16C25.6 16 20.1 19.6 17.6 24.9C16.9 26.4 18.0 28 19.6 28H26.2C27.1 28 27.9 27.4 28.2 26.6C29.0 24.6 30.9 23.2 33.1 23.2H36.4C38.5 23.2 39.4 20.5 37.8 19.1C36.2 17.7 34.2 16.8 32 16Z" fill="#111827"/>
+  <path d="M48 32C48 25.6 44.4 20.1 39.1 17.6C37.6 16.9 36.0 18.0 36.0 19.6V26.2C36.0 27.1 36.6 27.9 37.4 28.2C39.4 29.0 40.8 30.9 40.8 33.1V36.4C40.8 38.5 43.5 39.4 44.9 37.8C46.3 36.2 47.2 34.2 48 32Z" fill="#0EA5E9"/>
+  <path d="M32 48C38.4 48 43.9 44.4 46.4 39.1C47.1 37.6 46.0 36.0 44.4 36.0H37.8C36.9 36.0 36.1 36.6 35.8 37.4C35.0 39.4 33.1 40.8 30.9 40.8H27.6C25.5 40.8 24.6 43.5 26.2 44.9C27.8 46.3 29.8 47.2 32 48Z" fill="#F59E0B"/>
+  <path d="M16 32C16 38.4 19.6 43.9 24.9 46.4C26.4 47.1 28.0 46.0 28.0 44.4V37.8C28.0 36.9 27.4 36.1 26.6 35.8C24.6 35.0 23.2 33.1 23.2 30.9V27.6C23.2 25.5 20.5 24.6 19.1 26.2C17.7 27.8 16.8 29.8 16 32Z" fill="#EF4444"/>
+
+  <!-- subtle center ring -->
+  <circle cx="32" cy="32" r="7.25" stroke="url(#ring)" stroke-width="2.5"/>
+</svg>
