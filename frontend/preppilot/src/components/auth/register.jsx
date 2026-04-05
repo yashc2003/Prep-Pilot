@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { commonFields, roleSpecificFields } from '../../utils/formConfig';
 import './auth.css';
+import logo from '../../assets/preppilot-wordmark-transparent.png';
 
 const Register = ({ onSwitchToLogin }) => {
   const [formData, setFormData] = useState({
@@ -381,8 +382,20 @@ const Register = ({ onSwitchToLogin }) => {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
+    <div className="auth-shell">
+      <header className="auth-header">
+        <div className="auth-brand">
+          <img className="auth-logo" src={logo} alt="PrepPilot" />
+        </div>
+        <div className="auth-header-actions">
+          <button type="button" className="auth-header-link" onClick={() => onSwitchToLogin()}>
+            Login
+          </button>
+        </div>
+      </header>
+
+      <div className="auth-container">
+        <div className="auth-card auth-card--register">
         <h2>Registration</h2>
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-grid">
@@ -452,6 +465,7 @@ const Register = ({ onSwitchToLogin }) => {
             Login here
           </span>
         </p>
+        </div>
       </div>
     </div>
   );

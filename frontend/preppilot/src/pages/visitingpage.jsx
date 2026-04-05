@@ -1,19 +1,43 @@
 import React from 'react';
 import './visitingpage.css';
 import { BriefcaseIcon, ChartBarIcon, SparklesIcon } from '@heroicons/react/24/outline';
-import logo from '../assets/preppilot-logo.svg';
+import logo from '../assets/preppilot-wordmark-transparent.png';
 import heroArt from '../assets/visiting-hero.svg';
+import VideoHeroSlider from '../components/marketing/VideoHeroSlider';
 
 const VisitingPage = ({ onStartRegister, onGoToLogin }) => {
+  const slides = [
+    {
+      id: 'prep-1',
+      kicker: 'AI Mock Interviews',
+      title: 'Practice with realistic AI interviews',
+      subtitle: 'Get instant feedback on communication and technical depth.',
+      videoSrc: '/banners/preppilot-1.mp4',
+      poster: heroArt,
+    },
+    {
+      id: 'prep-2',
+      kicker: 'Placement Dashboard',
+      title: 'Modern dashboards for every role',
+      subtitle: 'College, candidate, admin, company and consultancy views.',
+      videoSrc: '/banners/preppilot-2.mp4',
+      poster: heroArt,
+    },
+    {
+      id: 'prep-3',
+      kicker: 'Analytics & Reports',
+      title: 'Track progress and placement outcomes',
+      subtitle: 'Simple stats that help students improve faster.',
+      videoSrc: '/banners/preppilot-3.mp4',
+      poster: heroArt,
+    },
+  ];
+
   return (
     <div className="visiting-container">
       <header className="visiting-nav">
         <div className="visiting-brand">
           <img className="visiting-logo" src={logo} alt="PrepPilot" />
-          <div>
-            <div className="visiting-brand-name">PrepPilot</div>
-            <div className="visiting-brand-tagline">AI based interview application</div>
-          </div>
         </div>
 
         <div className="visiting-nav-actions">
@@ -82,14 +106,14 @@ const VisitingPage = ({ onStartRegister, onGoToLogin }) => {
             </div>
           </div>
 
-          <div className="visiting-hero-right" aria-hidden="true">
-            <img className="visiting-hero-art" src={heroArt} alt="" />
-            <div className="visiting-floating-card card-a">
+          <div className="visiting-hero-right">
+            <VideoHeroSlider slides={slides} />
+            <div className="visiting-floating-card card-a" aria-hidden="true">
               <div className="visiting-floating-title">Interview score</div>
               <div className="visiting-floating-value">8.2/10</div>
               <div className="visiting-floating-sub">+14% this week</div>
             </div>
-            <div className="visiting-floating-card card-b">
+            <div className="visiting-floating-card card-b" aria-hidden="true">
               <div className="visiting-floating-title">Active jobs</div>
               <div className="visiting-floating-value">126</div>
               <div className="visiting-floating-sub">Verified postings</div>

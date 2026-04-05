@@ -1,13 +1,28 @@
 import React from 'react';
 import AdminDashboard from '../components/dashboard/admin';
 import CandidateDashboard from '../components/dashboard/candidate';
+import CollegeDashboard from '../components/dashboard/college';
+import CompanyDashboard from '../components/dashboard/company';
+import ConsultancyDashboard from '../components/dashboard/consultancy';
 import './Dashboard.css';
-import logo from '../assets/preppilot-logo.svg';
+import logo from '../assets/preppilot-wordmark-white.png';
 
 const DashboardPage = ({ role, onLogout }) => {
   const renderDashboard = () => {
     if (role === 'admin') {
       return <AdminDashboard />;
+    }
+
+    if (role === 'college') {
+      return <CollegeDashboard />;
+    }
+
+    if (role === 'company') {
+      return <CompanyDashboard />;
+    }
+
+    if (role === 'consultancy') {
+      return <ConsultancyDashboard />;
     }
 
     return <CandidateDashboard />;
@@ -18,10 +33,6 @@ const DashboardPage = ({ role, onLogout }) => {
       <header className="dashboard-header">
         <div className="dashboard-brand">
           <img className="dashboard-logo" src={logo} alt="PrepPilot" />
-          <div className="dashboard-brand-text">
-            <div className="dashboard-brand-name">PrepPilot</div>
-            <div className="dashboard-brand-subtitle">Admin & User Dashboard</div>
-          </div>
         </div>
         <div className="user-info">
           <span className="role-badge">{role}</span>

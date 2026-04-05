@@ -1,6 +1,6 @@
-
 import React, { useState } from 'react';
 import './auth.css';
+import logo from '../../assets/preppilot-wordmark-transparent.png';
 
 const Login = ({ onSwitchToRegister, onLoginSuccess }) => {
   const [credentials, setCredentials] = useState({
@@ -80,8 +80,22 @@ const Login = ({ onSwitchToRegister, onLoginSuccess }) => {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
+    
+  
+    <div className="auth-shell">
+      <header className="auth-header">
+        <div className="auth-brand">
+          <img className="auth-logo" src={logo} alt="PrepPilot" />
+        </div>
+        <div className="auth-header-actions">
+          <button type="button" className="auth-header-link" onClick={onSwitchToRegister}>
+            Register
+          </button>
+        </div>
+      </header>
+
+      <div className="auth-container">
+        <div className="auth-card auth-card--login">
         <h2>Login to Preppilot</h2>
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="form-group">
@@ -146,8 +160,10 @@ const Login = ({ onSwitchToRegister, onLoginSuccess }) => {
             Register here
           </span>
         </p>
+        </div>
       </div>
     </div>
+  
   );
 };
 

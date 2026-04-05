@@ -51,8 +51,10 @@
 }
 
 .visiting-logo {
-  width: 38px;
-  height: 38px;
+  height: 42px;
+  width: auto;
+  max-width: 260px;
+  object-fit: contain;
 }
 
 .visiting-brand-name {
@@ -417,5 +419,270 @@
   .visiting-footer-inner {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+/* --- Video slider + animations (modern landing polish) --- */
+
+.vh-slider {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(30, 77, 105, 0.14);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.14);
+  background: linear-gradient(135deg, rgba(30, 77, 105, 0.16) 0%, rgba(47, 126, 175, 0.12) 100%);
+}
+
+.vh-media {
+  position: absolute;
+  inset: 0;
+}
+
+.vh-video,
+.vh-fallback {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02);
+  animation: pp-hero-zoom 900ms ease both;
+}
+
+.vh-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      180deg,
+      rgba(9, 20, 32, 0.06) 0%,
+      rgba(9, 20, 32, 0.10) 40%,
+      rgba(9, 20, 32, 0.62) 100%
+    ),
+    radial-gradient(900px 420px at 20% 20%, rgba(47, 126, 175, 0.25) 0%, rgba(47, 126, 175, 0) 60%);
+}
+
+.vh-caption {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  padding: 14px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+  backdrop-filter: blur(12px);
+  animation: pp-fade-up 680ms ease both;
+}
+
+.vh-caption-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.vh-caption-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.vh-caption-title {
+  font-weight: 900;
+  font-size: 18px;
+  margin-top: 10px;
+  line-height: 1.15;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+}
+
+.vh-caption-sub {
+  margin-top: 6px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.86);
+  line-height: 1.45;
+}
+
+.vh-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(12px);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.vh-arrow:hover {
+  transform: translateY(-50%) scale(1.03);
+  background: rgba(255, 255, 255, 0.20);
+}
+
+.vh-arrow.left {
+  left: 12px;
+}
+
+.vh-arrow.right {
+  right: 12px;
+}
+
+.vh-arrow-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.vh-dots {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+}
+
+.vh-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.40);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.vh-dot.active {
+  background: rgba(255, 255, 255, 0.92);
+  transform: scale(1.12);
+}
+
+.visiting-floating-card {
+  animation: pp-float 4.8s ease-in-out infinite;
+}
+
+.card-a {
+  animation-duration: 4.6s;
+}
+
+.card-b {
+  animation-duration: 5.1s;
+  animation-delay: 0.25s;
+}
+
+.visiting-feature-card {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.visiting-feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.14);
+}
+
+.visiting-badge,
+.visiting-title,
+.visiting-subtitle,
+.visiting-points,
+.visiting-actions,
+.visiting-trust {
+  animation: pp-fade-up 700ms ease both;
+}
+
+.visiting-title {
+  animation-delay: 0.05s;
+}
+
+.visiting-subtitle {
+  animation-delay: 0.09s;
+}
+
+.visiting-points {
+  animation-delay: 0.12s;
+}
+
+.visiting-actions {
+  animation-delay: 0.16s;
+}
+
+.visiting-trust {
+  animation-delay: 0.20s;
+}
+
+@keyframes pp-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pp-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pp-hero-zoom {
+  from {
+    opacity: 0.85;
+    transform: scale(1.06);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vh-video,
+  .vh-fallback,
+  .vh-caption,
+  .visiting-floating-card,
+  .visiting-badge,
+  .visiting-title,
+  .visiting-subtitle,
+  .visiting-points,
+  .visiting-actions,
+  .visiting-trust {
+    animation: none !important;
+  }
+
+  .visiting-feature-card:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 980px) {
+  .vh-slider {
+    height: 320px;
+  }
+}
+
+@media (max-width: 520px) {
+  .vh-slider {
+    height: 280px;
   }
 }
