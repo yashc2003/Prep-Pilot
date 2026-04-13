@@ -1,0 +1,14 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["candidate_id", "company_id", "date", "mode", "status"],
+    "properties": {
+      "candidate_id": { "bsonType": "objectId" },
+      "company_id": { "bsonType": "objectId" },
+      "date": { "bsonType": "date" },
+      "mode": { "bsonType": "string", "enum": ["online", "offline"] },
+      "status": { "bsonType": "string", "enum": ["scheduled", "completed", "cancelled"] }
+    }
+  }
+}
+

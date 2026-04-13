@@ -18,7 +18,7 @@ const formatTime = (iso) => {
   }
 };
 
-const CompanyInterviewSchedule = ({ interviews, onUpdateInterview }) => {
+const CompanyInterviewSchedule = ({ interviews, onUpdateInterview, title = 'Interview Schedule', subtitle = 'Calendar view with candidate name, interview time, and status.' }) => {
   const byDate = useMemo(() => {
     const map = new Map();
     for (const i of interviews) {
@@ -36,8 +36,8 @@ const CompanyInterviewSchedule = ({ interviews, onUpdateInterview }) => {
   return (
     <div className="dashboard-container">
       <div className="page-section-head">
-        <h2>Interview Schedule</h2>
-        <p className="muted">Calendar view with candidate name, interview time, and status.</p>
+        <h2>{title}</h2>
+        <p className="muted">{subtitle}</p>
       </div>
 
       <div className="ui-card">
@@ -80,4 +80,3 @@ const CompanyInterviewSchedule = ({ interviews, onUpdateInterview }) => {
 };
 
 export default CompanyInterviewSchedule;
-

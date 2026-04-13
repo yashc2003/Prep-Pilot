@@ -1,0 +1,11 @@
+[
+  {
+    "_id": { "$oid": "660000000000000000000101" },
+    "user_id": { "$oid": "660000000000000000000002" },
+    "college_name": "ABC Institute of Technology",
+    "location": "Bengaluru",
+    "contact_email": "placement@abcit.edu",
+    "created_at": { "$date": "2026-04-06T00:00:00.000Z" }
+  }
+]
+

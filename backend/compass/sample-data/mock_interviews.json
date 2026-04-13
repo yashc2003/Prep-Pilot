@@ -1,0 +1,13 @@
+[
+  {
+    "_id": { "$oid": "660000000000000000000801" },
+    "candidate_id": { "$oid": "660000000000000000000401" },
+    "date": { "$date": "2026-04-06T00:00:00.000Z" },
+    "domain": "Technical",
+    "score": 78,
+    "feedback": "Good fundamentals; improve communication pacing.",
+    "confidence_score": 70,
+    "communication_score": 65
+  }
+]
+

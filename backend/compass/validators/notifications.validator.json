@@ -1,0 +1,13 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["user_id", "message", "status", "created_at"],
+    "properties": {
+      "user_id": { "bsonType": "objectId" },
+      "message": { "bsonType": "string", "minLength": 1 },
+      "status": { "bsonType": "string", "enum": ["read", "unread"] },
+      "created_at": { "bsonType": "date" }
+    }
+  }
+}
+

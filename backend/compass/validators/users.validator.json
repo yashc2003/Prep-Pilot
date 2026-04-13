@@ -1,0 +1,17 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["name", "email", "passwordHash", "role", "phone", "status", "created_at"],
+    "properties": {
+      "name": { "bsonType": "string", "minLength": 1 },
+      "email": { "bsonType": "string", "minLength": 3 },
+      "passwordHash": { "bsonType": "string", "minLength": 10 },
+      "role": { "bsonType": "string", "enum": ["admin", "company", "consultancy", "college", "candidate"] },
+      "phone": { "bsonType": "string", "minLength": 6 },
+      "status": { "bsonType": "string", "enum": ["active", "inactive", "blocked"] },
+      "created_at": { "bsonType": "date" },
+      "updated_at": { "bsonType": "date" }
+    }
+  }
+}
+

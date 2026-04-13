@@ -181,6 +181,43 @@
   color: #22323d;
 }
 
+.company-nav-sublink {
+  padding-left: 26px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.consultancy-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.consultancy-nav-sub {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 10px;
+}
+
+.consultancy-nav-sublink {
+  padding-left: 26px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.consultancy-nav-caret {
+  opacity: 0.7;
+  font-weight: 900;
+  transform: rotate(-90deg);
+  transition: transform 160ms ease;
+}
+
+.consultancy-nav-caret.open {
+  transform: rotate(0deg);
+}
+
 .candidate-nav-item:hover,
 .consultancy-nav-item:hover,
 .company-nav-item:hover {
@@ -212,6 +249,43 @@
   display: flex;
   align-items: end;
   justify-content: flex-end;
+}
+
+.company-round-card {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.company-round-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.company-round-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.company-round-job {
+  grid-column: 1 / -1;
+  min-width: 0;
+}
+
+.company-round-conductedby {
+  grid-column: 1 / -1;
+}
+
+.company-round-actions {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 720px) {
+  .company-round-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .muted {
@@ -246,6 +320,9 @@
   padding: 14px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
   overflow: hidden;
+  padding: 50px;
+
+  
 }
 
 .ui-card-head {
@@ -308,6 +385,42 @@
   flex-wrap: wrap;
   align-items: center;
   margin-top: 4px;
+}
+
+.prep-schedule-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  align-items: start;
+  
+}
+
+.prep-schedule-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+}
+
+.prep-schedule-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.prep-schedule-candidates .ui-card-head {
+  margin-bottom: 10px;
+  margin-top: 60px;
+  box-shadow: #a8c9da;
+}
+
+.prep-candidate-table-wrap {
+  border: 1px solid #edf1f6;
+  border-radius: 12px;
+  overflow: auto;
+  max-height: 420px;
 }
 
 .ui-table-wrap {
@@ -1103,6 +1216,130 @@
   margin: 14px 0;
 }
 
+.student-mgmt-page-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 6px 0 10px 0;
+}
+
+.student-mgmt-kicker {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #667085;
+}
+
+.student-mgmt-title {
+  margin-top: 4px;
+  font-size: 24px;
+  font-weight: 900;
+  color: #1e4d69;
+}
+
+.student-mgmt-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.student-mgmt-tabs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  margin: 12px 0 14px 0;
+}
+
+.student-mgmt-tab {
+  text-align: center;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 800;
+  color: #22323d;
+}
+
+.student-mgmt-tab:hover {
+  background: #f3f6fb;
+}
+
+.student-mgmt-tab.active {
+  background: rgba(47, 126, 175, 0.12);
+  border-color: rgba(47, 126, 175, 0.25);
+  color: #1e4d69;
+}
+
+.student-mgmt-tab-primary {
+  background: #1e4d69;
+  color: #fff;
+  border-color: #1e4d69;
+}
+
+.student-mgmt-tab-primary:hover {
+  background: #215774;
+}
+
+.student-mgmt-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 8px 0 14px 0;
+}
+
+.student-mgmt-table-wrap {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.student-mgmt-table-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border-bottom: 1px solid #edf1f6;
+}
+
+.student-mgmt-table-title {
+  font-weight: 900;
+  color: #101828;
+}
+
+.student-mgmt-table-scroll {
+  width: 100%;
+  overflow: auto;
+}
+
+.student-mgmt-upload-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.student-mgmt-file {
+  display: none;
+}
+
+.student-mgmt-import-feedback {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.student-mgmt-import-errors {
+  color: #991b1b;
+  font-size: 13px;
+}
+
 .admin-panel {
   background: #fff;
   border-radius: 12px;
@@ -1200,6 +1437,7 @@
 .admin-td-strong {
   font-weight: 700;
   color: #101828;
+  
 }
 
 .admin-empty {

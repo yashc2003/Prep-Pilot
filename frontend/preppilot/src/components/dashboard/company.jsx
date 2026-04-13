@@ -3,11 +3,14 @@ import CompanyDashboardHome from '../company/CompanyDashboardHome';
 import CompanyPostJob from '../company/CompanyPostJob';
 import CompanyManageJobs from '../company/CompanyManageJobs';
 import CompanyCandidates from '../company/CompanyCandidates';
-import CompanyInterviewSchedule from '../company/CompanyInterviewSchedule';
 import CompanyAnalytics from '../company/CompanyAnalytics';
+import CompanyAddRounds from '../company/CompanyAddRounds';
+import CompanyScheduleRounds from '../company/CompanyScheduleRounds';
 
 const CompanyDashboard = () => {
   const [activePage, setActivePage] = useState('dashboard');
+  const [openManageJob, setOpenManageJob] = useState(true);
+  const [openRounds, setOpenRounds] = useState(true);
 
   const [jobs, setJobs] = useState([
     {
@@ -37,6 +40,14 @@ const CompanyDashboard = () => {
       applications: 11,
     },
   ]);
+
+  const [roundsByJob, setRoundsByJob] = useState({
+    'job-1': [
+      { id: 'r-1', name: 'Round 1: Technical', type: 'Technical', date: '2026-04-09', time: '10:00', conductedBy: 'Sanjay Kumar' },
+      { id: 'r-2', name: 'Round 2: HR', type: 'HR', date: '2026-04-11', time: '12:30', conductedBy: 'Ritika Jain' },
+    ],
+    'job-2': [{ id: 'r-1', name: 'Round 1: Technical', type: 'Technical', date: '2026-04-08', time: '15:00', conductedBy: 'Aditya Rao' }],
+  });
 
   const [candidates, setCandidates] = useState([
     {
@@ -93,6 +104,7 @@ const CompanyDashboard = () => {
     ]);
     alert('Job posted.');
     setActivePage('manage');
+    setOpenManageJob(true);
   };
 
   const handleDeleteJob = (jobId) => {
@@ -138,11 +150,27 @@ const CompanyDashboard = () => {
       prev.map((c) => (c.id === candidateId && c.applicationStatus !== 'Rejected' ? { ...c, applicationStatus: 'Interview Scheduled' } : c))
     );
     alert('Interview scheduled.');
-    setActivePage('schedule');
+    setActivePage('rounds-schedule');
+    setOpenRounds(true);
   };
 
   const handleUpdateInterview = (interviewId, updates) => {
     setInterviews((prev) => prev.map((i) => (i.id === interviewId ? { ...i, ...updates } : i)));
+  };
+
+  const handleAddRound = (jobId, round) => {
+    setRoundsByJob((prev) => {
+      const existing = prev[jobId] ?? [];
+      const nextId = `r-${existing.length + 1}`;
+      return { ...prev, [jobId]: [{ id: nextId, ...round }, ...existing] };
+    });
+  };
+
+  const handleUpdateRound = (jobId, roundId, updates) => {
+    setRoundsByJob((prev) => ({
+      ...prev,
+      [jobId]: (prev[jobId] ?? []).map((r) => (r.id === roundId ? { ...r, ...updates } : r)),
+    }));
   };
 
   return (
@@ -154,21 +182,67 @@ const CompanyDashboard = () => {
         </div>
 
         <nav className="company-nav">
-          <button className={`company-nav-item ${activePage === 'dashboard' ? 'active' : ''}`} onClick={() => setActivePage('dashboard')} type="button">
+          <button
+            className={`company-nav-item ${activePage === 'dashboard' ? 'active' : ''}`}
+            onClick={() => setActivePage('dashboard')}
+            type="button"
+          >
             Dashboard
           </button>
-          <button className={`company-nav-item ${activePage === 'post' ? 'active' : ''}`} onClick={() => setActivePage('post')} type="button">
-            Post Job
+
+          <button
+            className={`company-nav-item ${activePage === 'manage' || activePage === 'post' ? 'active' : ''}`}
+            onClick={() => {
+              setOpenManageJob((v) => !v);
+              setActivePage('manage');
+            }}
+            type="button"
+          >
+            Manage Job
           </button>
-          <button className={`company-nav-item ${activePage === 'manage' ? 'active' : ''}`} onClick={() => setActivePage('manage')} type="button">
-            Manage Jobs
-          </button>
+          {openManageJob ? (
+            <button
+              className={`company-nav-item company-nav-sublink ${activePage === 'post' ? 'active' : ''}`}
+              onClick={() => setActivePage('post')}
+              type="button"
+            >
+              Post Job
+            </button>
+          ) : null}
+
           <button className={`company-nav-item ${activePage === 'candidates' ? 'active' : ''}`} onClick={() => setActivePage('candidates')} type="button">
             Candidates
           </button>
-          <button className={`company-nav-item ${activePage === 'schedule' ? 'active' : ''}`} onClick={() => setActivePage('schedule')} type="button">
-            Interview Schedule
+
+          <button
+            className={`company-nav-item ${activePage.startsWith('rounds-') ? 'active' : ''}`}
+            onClick={() => {
+              setOpenRounds((v) => !v);
+              setActivePage('rounds-add');
+            }}
+            type="button"
+          >
+            Rounds
           </button>
+          {openRounds ? (
+            <>
+              <button
+                className={`company-nav-item company-nav-sublink ${activePage === 'rounds-add' ? 'active' : ''}`}
+                onClick={() => setActivePage('rounds-add')}
+                type="button"
+              >
+                Add Rounds
+              </button>
+              <button
+                className={`company-nav-item company-nav-sublink ${activePage === 'rounds-schedule' ? 'active' : ''}`}
+                onClick={() => setActivePage('rounds-schedule')}
+                type="button"
+              >
+                Schedule Rounds
+              </button>
+            </>
+          ) : null}
+
           <button className={`company-nav-item ${activePage === 'analytics' ? 'active' : ''}`} onClick={() => setActivePage('analytics')} type="button">
             Analytics
           </button>
@@ -180,9 +254,7 @@ const CompanyDashboard = () => {
 
         {activePage === 'post' && <CompanyPostJob onSubmit={handlePostJob} />}
 
-        {activePage === 'manage' && (
-          <CompanyManageJobs jobs={jobs} onEdit={handleEditJob} onDelete={handleDeleteJob} onUpdateStatus={handleUpdateJobStatus} />
-        )}
+        {activePage === 'manage' && <CompanyManageJobs jobs={jobs} onEdit={handleEditJob} onDelete={handleDeleteJob} onUpdateStatus={handleUpdateJobStatus} />}
 
         {activePage === 'candidates' && (
           <CompanyCandidates
@@ -194,7 +266,19 @@ const CompanyDashboard = () => {
           />
         )}
 
-        {activePage === 'schedule' && <CompanyInterviewSchedule interviews={interviews} onUpdateInterview={handleUpdateInterview} />}
+        {activePage === 'rounds-add' && (
+          <CompanyAddRounds jobs={jobs} onAddRound={handleAddRound} />
+        )}
+
+        {activePage === 'rounds-schedule' && (
+          <CompanyScheduleRounds
+            jobs={jobs}
+            roundsByJob={roundsByJob}
+            onUpdateRound={handleUpdateRound}
+            interviews={interviews}
+            onUpdateInterview={handleUpdateInterview}
+          />
+        )}
 
         {activePage === 'analytics' && <CompanyAnalytics jobs={jobs} candidates={candidates} interviews={interviews} />}
       </main>

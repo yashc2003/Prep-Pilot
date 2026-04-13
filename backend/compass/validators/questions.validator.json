@@ -1,0 +1,12 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["domain", "question_text", "difficulty"],
+    "properties": {
+      "domain": { "bsonType": "string", "enum": ["HR", "Technical"] },
+      "question_text": { "bsonType": "string", "minLength": 1 },
+      "difficulty": { "bsonType": "string", "enum": ["Easy", "Medium", "Hard"] }
+    }
+  }
+}
+

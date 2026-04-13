@@ -4,7 +4,6 @@ import CandidateProfile from '../candidate/CandidateProfile';
 import CandidateJobSearch from '../candidate/CandidateJobSearch';
 import CandidateMockInterviews from '../candidate/CandidateMockInterviews';
 import CandidateInterviewResults from '../candidate/CandidateInterviewResults';
-import CandidateSchedule from '../candidate/CandidateSchedule';
 
 const CandidateDashboard = () => {
   const [activePage, setActivePage] = useState('dashboard');
@@ -21,33 +20,6 @@ const CandidateDashboard = () => {
     { id: 'j2', title: 'Full Stack Engineer', company: 'StartupXYZ', location: 'Hyderabad', experience: '2-4', skills: ['React', 'Node.js'] },
     { id: 'j3', title: 'React Developer', company: 'WebSolutions', location: 'Remote', experience: '1-3', skills: ['React'] },
     { id: 'j4', title: 'Backend Engineer', company: 'DataHub', location: 'Pune', experience: '2-5', skills: ['Node.js'] },
-  ]);
-
-  const [interviewProcesses, setInterviewProcesses] = useState([
-    {
-      id: 'p1',
-      jobId: 'j1',
-      company: 'TechCorp',
-      role: 'Frontend Developer',
-      rounds: [
-        {
-          id: 'r1',
-          name: 'Round 1 (Technical)',
-          date: '2026-04-06',
-          slotOptions: ['10:00', '11:30', '15:00'],
-          selectedSlot: '',
-          status: 'Pending Slot',
-        },
-        {
-          id: 'r2',
-          name: 'Round 2 (HR)',
-          date: '2026-04-08',
-          slotOptions: ['10:30', '13:00', '16:00'],
-          selectedSlot: '',
-          status: 'Pending Slot',
-        },
-      ],
-    },
   ]);
 
   const [previousInterviews, setPreviousInterviews] = useState([
@@ -110,58 +82,6 @@ const CandidateDashboard = () => {
     setActivePage('results');
   };
 
-  const handleSelectRoundSlot = (processId, roundId, slot) => {
-    setInterviewProcesses((prev) =>
-      prev.map((p) => {
-        if (p.id !== processId) return p;
-        return {
-          ...p,
-          rounds: p.rounds.map((r) => (r.id === roundId ? { ...r, selectedSlot: slot, status: r.status === 'Scheduled' ? 'Scheduled' : 'Slot Selected' } : r)),
-        };
-      })
-    );
-  };
-
-  const handleConfirmRoundSlot = (processId, roundId) => {
-    setInterviewProcesses((prev) =>
-      prev.map((p) => {
-        if (p.id !== processId) return p;
-        const round = p.rounds.find((r) => r.id === roundId);
-        if (!round) return p;
-        if (!round.selectedSlot) {
-          alert('Please select a slot first.');
-          return p;
-        }
-        return {
-          ...p,
-          rounds: p.rounds.map((r) => (r.id === roundId ? { ...r, status: 'Scheduled' } : r)),
-        };
-      })
-    );
-  };
-
-  const handleAddSchedule = (newSchedule) => {
-    setInterviewProcesses((prev) => [
-      {
-        id: `p${prev.length + 1}`,
-        jobId: newSchedule.jobId || `custom-${prev.length + 1}`,
-        company: newSchedule.company,
-        role: newSchedule.role,
-        rounds: [
-          {
-            id: 'r1',
-            name: newSchedule.roundName,
-            date: newSchedule.date,
-            slotOptions: newSchedule.slotOptions,
-            selectedSlot: '',
-            status: 'Pending Slot',
-          },
-        ],
-      },
-      ...prev,
-    ]);
-  };
-
   return (
     <div className="candidate-shell">
       <aside className="candidate-sidebar">
@@ -206,13 +126,6 @@ const CandidateDashboard = () => {
           >
             Interview Results
           </button>
-          <button
-            className={`candidate-nav-item ${activePage === 'schedule' ? 'active' : ''}`}
-            onClick={() => setActivePage('schedule')}
-            type="button"
-          >
-            Schedule
-          </button>
         </nav>
       </aside>
 
@@ -248,16 +161,6 @@ const CandidateDashboard = () => {
             selectedInterviewId={selectedInterviewId}
             onSelectInterview={setSelectedInterviewId}
             result={interviewResults[selectedInterviewId]}
-          />
-        )}
-
-        {activePage === 'schedule' && (
-          <CandidateSchedule
-            jobs={jobs}
-            processes={interviewProcesses}
-            onSelectSlot={handleSelectRoundSlot}
-            onConfirmSlot={handleConfirmRoundSlot}
-            onAddSchedule={handleAddSchedule}
           />
         )}
       </main>

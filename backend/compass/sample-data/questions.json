@@ -1,0 +1,9 @@
+[
+  {
+    "_id": { "$oid": "660000000000000000000701" },
+    "domain": "Technical",
+    "question_text": "Explain the difference between var, let, and const in JavaScript.",
+    "difficulty": "Easy"
+  }
+]
+

@@ -1,0 +1,14 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["candidate_id", "consultancy_id", "amount", "status", "date"],
+    "properties": {
+      "candidate_id": { "bsonType": "objectId" },
+      "consultancy_id": { "bsonType": "objectId" },
+      "amount": { "bsonType": ["int", "long", "double", "decimal"] },
+      "status": { "bsonType": "string", "enum": ["pending", "paid", "failed", "refunded"] },
+      "date": { "bsonType": "date" }
+    }
+  }
+}
+

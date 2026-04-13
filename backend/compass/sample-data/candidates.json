@@ -1,0 +1,13 @@
+[
+  {
+    "_id": { "$oid": "660000000000000000000401" },
+    "user_id": { "$oid": "660000000000000000000005" },
+    "education": "B.Tech CSE",
+    "skills": ["JavaScript", "React", "Node.js"],
+    "resume_url": "https://example.com/resume/aarav.pdf",
+    "experience": "Fresher",
+    "college_id": { "$oid": "660000000000000000000101" },
+    "created_at": { "$date": "2026-04-06T00:00:00.000Z" }
+  }
+]
+

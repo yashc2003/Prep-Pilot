@@ -1,0 +1,15 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["user_id", "name", "created_at"],
+    "properties": {
+      "user_id": { "bsonType": "objectId" },
+      "name": { "bsonType": "string", "minLength": 1 },
+      "services": { "bsonType": "array", "items": { "bsonType": "string" } },
+      "fees": { "bsonType": ["int", "long", "double", "decimal"] },
+      "rating": { "bsonType": ["int", "long", "double", "decimal"] },
+      "created_at": { "bsonType": "date" }
+    }
+  }
+}
+

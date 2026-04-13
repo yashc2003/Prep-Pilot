@@ -1,0 +1,19 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["company_id", "job_title", "description", "location", "deadline", "status", "created_at"],
+    "properties": {
+      "company_id": { "bsonType": "objectId" },
+      "job_title": { "bsonType": "string", "minLength": 1 },
+      "description": { "bsonType": "string", "minLength": 1 },
+      "skills_required": { "bsonType": "array", "items": { "bsonType": "string" } },
+      "salary": { "bsonType": "string" },
+      "location": { "bsonType": "string", "minLength": 1 },
+      "experience": { "bsonType": "string" },
+      "deadline": { "bsonType": "date" },
+      "status": { "bsonType": "string", "enum": ["open", "closed", "paused"] },
+      "created_at": { "bsonType": "date" }
+    }
+  }
+}
+

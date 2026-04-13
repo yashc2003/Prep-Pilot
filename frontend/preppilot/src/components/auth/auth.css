@@ -9,8 +9,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 22px;
-  background-color: #4c5786;
+  padding: 15px 22px;
+  background-color: #e9ebede6;
+  border-radius: 20px 20px 20px 20px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 20px;
 }
 
 .auth-logo {
@@ -32,7 +36,7 @@
   padding: 10px 14px;
   cursor: pointer;
   font-weight: 700;
-  color: #22323d;
+  color: #083d5a;
 }
 
 .auth-header-link:hover {

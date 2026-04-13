@@ -1,0 +1,16 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["user_id", "company_name", "industry", "location", "created_at"],
+    "properties": {
+      "user_id": { "bsonType": "objectId" },
+      "company_name": { "bsonType": "string", "minLength": 1 },
+      "industry": { "bsonType": "string", "minLength": 1 },
+      "location": { "bsonType": "string", "minLength": 1 },
+      "website": { "bsonType": "string" },
+      "description": { "bsonType": "string" },
+      "created_at": { "bsonType": "date" }
+    }
+  }
+}
+

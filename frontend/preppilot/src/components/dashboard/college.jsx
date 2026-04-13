@@ -10,6 +10,11 @@ import AiInterviewPerformance from '../college/AiInterviewPerformance';
 const CollegeDashboard = () => {
   const [activePage, setActivePage] = useState('dashboard');
 
+  const [batches, setBatches] = useState(['2024-25', '2025-26']);
+  const [courses, setCourses] = useState(['B.Tech CSE', 'B.Tech IT', 'BCA', 'MBA']);
+  const [years, setYears] = useState(['1', '2', '3', '4']);
+  const [semesters, setSemesters] = useState(['1', '2', '3', '4', '5', '6', '7', '8']);
+
   const [students, setStudents] = useState([
     { id: 's1', name: 'Aarav Mehta', course: 'B.Tech CSE', skills: ['React', 'Node.js'], status: 'Placed', company: 'TechCorp', aiScore: 8.2 },
     { id: 's2', name: 'Neha Sharma', course: 'B.Tech IT', skills: ['Java', 'Spring'], status: 'In Process', company: '', aiScore: 7.5 },
@@ -78,6 +83,42 @@ const CollegeDashboard = () => {
     if (action === 'markNotPlaced') {
       setStudents((prev) => prev.map((s) => (s.id === studentId ? { ...s, status: 'Not Placed', company: '' } : s)));
     }
+  };
+
+  const handleAddStudent = (student) => {
+    setStudents((prev) => [{ ...student, id: `s${prev.length + 1}` }, ...prev]);
+  };
+
+  const handleAddBatch = (batch) => {
+    setBatches((prev) => [batch, ...prev]);
+  };
+
+  const handleRemoveBatch = (batch) => {
+    setBatches((prev) => prev.filter((b) => b !== batch));
+  };
+
+  const handleAddCourse = (course) => {
+    setCourses((prev) => [course, ...prev]);
+  };
+
+  const handleRemoveCourse = (course) => {
+    setCourses((prev) => prev.filter((c) => c !== course));
+  };
+
+  const handleAddYear = (year) => {
+    setYears((prev) => [year, ...prev]);
+  };
+
+  const handleRemoveYear = (year) => {
+    setYears((prev) => prev.filter((y) => y !== year));
+  };
+
+  const handleAddSemester = (semester) => {
+    setSemesters((prev) => [semester, ...prev]);
+  };
+
+  const handleRemoveSemester = (semester) => {
+    setSemesters((prev) => prev.filter((s) => s !== semester));
   };
 
   const handleAddDrive = (drive) => {
@@ -165,7 +206,23 @@ const CollegeDashboard = () => {
         )}
 
         {activePage === 'students' && (
-          <StudentManagement students={students} onAction={handleStudentAction} />
+          <StudentManagement
+            students={students}
+            onAction={handleStudentAction}
+            onAddStudent={handleAddStudent}
+            batches={batches}
+            onAddBatch={handleAddBatch}
+            onRemoveBatch={handleRemoveBatch}
+            courses={courses}
+            onAddCourse={handleAddCourse}
+            onRemoveCourse={handleRemoveCourse}
+            years={years}
+            onAddYear={handleAddYear}
+            onRemoveYear={handleRemoveYear}
+            semesters={semesters}
+            onAddSemester={handleAddSemester}
+            onRemoveSemester={handleRemoveSemester}
+          />
         )}
 
         {activePage === 'drives' && (

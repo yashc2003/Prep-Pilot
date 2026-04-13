@@ -1,0 +1,14 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["user_id", "college_name", "created_at"],
+    "properties": {
+      "user_id": { "bsonType": "objectId" },
+      "college_name": { "bsonType": "string", "minLength": 1 },
+      "location": { "bsonType": "string" },
+      "contact_email": { "bsonType": "string" },
+      "created_at": { "bsonType": "date" }
+    }
+  }
+}
+

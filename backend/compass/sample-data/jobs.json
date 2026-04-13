@@ -1,0 +1,16 @@
+[
+  {
+    "_id": { "$oid": "660000000000000000000501" },
+    "company_id": { "$oid": "660000000000000000000201" },
+    "job_title": "Frontend Developer Intern",
+    "description": "Work with React + API integration and build UI components.",
+    "skills_required": ["React", "JavaScript", "HTML", "CSS"],
+    "salary": "₹15k/month",
+    "location": "Bengaluru",
+    "experience": "Fresher",
+    "deadline": { "$date": "2026-05-06T00:00:00.000Z" },
+    "status": "open",
+    "created_at": { "$date": "2026-04-06T00:00:00.000Z" }
+  }
+]
+

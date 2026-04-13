@@ -1,0 +1,16 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["user_id", "created_at"],
+    "properties": {
+      "user_id": { "bsonType": "objectId" },
+      "education": { "bsonType": "string" },
+      "skills": { "bsonType": "array", "items": { "bsonType": "string" } },
+      "resume_url": { "bsonType": "string" },
+      "experience": { "bsonType": "string" },
+      "college_id": { "bsonType": ["objectId", "null"] },
+      "created_at": { "bsonType": "date" }
+    }
+  }
+}
+

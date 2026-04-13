@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { commonFields, roleSpecificFields } from '../../utils/formConfig';
 import './auth.css';
 import logo from '../../assets/preppilot-wordmark-transparent.png';
+import { API_BASE_URL } from '../../config/api';
 
 const Register = ({ onSwitchToLogin }) => {
   const [formData, setFormData] = useState({
@@ -204,21 +205,60 @@ const Register = ({ onSwitchToLogin }) => {
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      console.log('Registration Data:', {
-        ...formData,
-        password: '[REDACTED]',
-        confirmPassword: '[REDACTED]'
+      const role = formData.role;
+
+      const payload = {
+        role,
+        name: formData.fullName,
+        email: formData.email,
+        phone: formData.mobile,
+        password: formData.password,
+        confirmPassword: formData.confirmPassword
+      };
+
+      if (role === 'company') {
+        payload.companyName = formData.companyName;
+        payload.industryType = formData.industryType;
+        payload.city = formData.city;
+        payload.companyWebsite = formData.companyWebsite;
+        payload.description = formData.companyAddress || '';
+      }
+
+      if (role === 'college') {
+        payload.collegeName = formData.collegeName;
+        payload.city = formData.city;
+        payload.collegeEmail = formData.collegeEmail;
+      }
+
+      if (role === 'consultancy') {
+        payload.consultancyName = formData.consultancyName;
+        payload.servicesOffered = formData.servicesOffered || [];
+      }
+
+      if (role === 'candidate') {
+        payload.qualification = formData.qualification;
+        payload.skills = formData.skills || [];
+        payload.experience = formData.experience;
+        payload.resumeUrl = '';
+      }
+
+      const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
       });
-      
+
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(data?.error || 'Registration failed');
+      }
+
       alert('Registration successful!');
       onSwitchToLogin();
       
     } catch (error) {
       console.error('Registration error:', error);
-      alert('Registration failed. Please try again.');
+      alert(error?.message || 'Registration failed. Please try again.');
     } finally {
       setIsSubmitting(false);
     }

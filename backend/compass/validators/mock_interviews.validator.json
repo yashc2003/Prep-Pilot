@@ -1,0 +1,16 @@
+{
+  "$jsonSchema": {
+    "bsonType": "object",
+    "required": ["candidate_id", "date", "domain"],
+    "properties": {
+      "candidate_id": { "bsonType": "objectId" },
+      "date": { "bsonType": "date" },
+      "domain": { "bsonType": "string", "enum": ["HR", "Technical"] },
+      "score": { "bsonType": ["int", "long", "double", "decimal"] },
+      "feedback": { "bsonType": "string" },
+      "confidence_score": { "bsonType": ["int", "long", "double", "decimal"] },
+      "communication_score": { "bsonType": ["int", "long", "double", "decimal"] }
+    }
+  }
+}
+

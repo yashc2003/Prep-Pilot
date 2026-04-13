@@ -1,0 +1,10 @@
+[
+  {
+    "_id": { "$oid": "660000000000000000000901" },
+    "interview_id": { "$oid": "660000000000000000000801" },
+    "answer_text": "var is function-scoped, let/const are block-scoped; const prevents reassignment.",
+    "score": 80,
+    "remarks": "Good answer"
+  }
+]
+
